@@ -7327,11 +7327,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\school\\AP\\GameDev\\GameDevProject\\Platformer\\Platformer\\Platformer.csproj",
+      "projectUniqueName": "D:\\school\\AP\\GameDev\\game-development-project-2020-2021-CampoMilan\\Platformer\\Platformer\\Platformer.csproj",
       "projectName": "Platformer",
-      "projectPath": "D:\\school\\AP\\GameDev\\GameDevProject\\Platformer\\Platformer\\Platformer.csproj",
+      "projectPath": "D:\\school\\AP\\GameDev\\game-development-project-2020-2021-CampoMilan\\Platformer\\Platformer\\Platformer.csproj",
       "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "D:\\school\\AP\\GameDev\\GameDevProject\\Platformer\\Platformer\\obj\\",
+      "outputPath": "D:\\school\\AP\\GameDev\\game-development-project-2020-2021-CampoMilan\\Platformer\\Platformer\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\",

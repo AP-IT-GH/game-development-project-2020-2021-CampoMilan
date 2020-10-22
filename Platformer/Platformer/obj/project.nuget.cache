@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jKj2NJsxuwa4RxyxvTk60D+a+vgsOF+Dc14oc74K2cUfeKk5UaDG1G6KH5S2eD8LYOYgRtPNXYrg5rIVxUuw7w==",
+  "dgSpecHash": "kv5NWnj97Zaj95AiSmf8G5XG+HR44d5fKWqQ4kUdOeQKwox/HwLn0PPDeEQLjiD0pYGaGbb4CshpbOpP/9aEuQ==",
   "success": true,
-  "projectFilePath": "D:\\school\\AP\\GameDev\\GameDevProject\\Platformer\\Platformer\\Platformer.csproj",
+  "projectFilePath": "D:\\school\\AP\\GameDev\\game-development-project-2020-2021-CampoMilan\\Platformer\\Platformer\\Platformer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\libuv\\1.9.1\\libuv.1.9.1.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.codeanalysis.analyzers\\1.1.0\\microsoft.codeanalysis.analyzers.1.1.0.nupkg.sha512",
