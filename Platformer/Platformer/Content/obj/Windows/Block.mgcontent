@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>D:/school/AP/GameDev/game-development-project-2020-2021-CampoMilan/Platformer/Platformer/Content/spritesheetHero.png</SourceFile>
-  <SourceTime>2020-10-16T11:57:49.3540877+02:00</SourceTime>
-  <DestFile>D:/school/AP/GameDev/game-development-project-2020-2021-CampoMilan/Platformer/Platformer/Content/bin/Windows/spritesheetHero.xnb</DestFile>
-  <DestTime>2020-11-18T14:29:57.1448576+01:00</DestTime>
+  <SourceFile>D:/school/AP/GameDev/game-development-project-2020-2021-CampoMilan/Platformer/Platformer/Content/Block.png</SourceFile>
+  <SourceTime>2020-11-18T14:35:26.3968663+01:00</SourceTime>
+  <DestFile>D:/school/AP/GameDev/game-development-project-2020-2021-CampoMilan/Platformer/Platformer/Content/bin/Windows/Block.xnb</DestFile>
+  <DestTime>2020-11-18T14:36:14.385306+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2020-08-10T16:17:54+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

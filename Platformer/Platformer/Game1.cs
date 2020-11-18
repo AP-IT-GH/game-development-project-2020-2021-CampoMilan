@@ -1,6 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Platformer.Collision;
+using Platformer.Input;
+using Platformer.LevelDesign;
 using System;
 
 namespace Platformer
@@ -13,6 +16,9 @@ namespace Platformer
         private Texture2D texture;
         Hero hero;
 
+        CollisionManager collisionManager;
+
+        Level1 level;
 
         public Game1()
         {
@@ -24,6 +30,9 @@ namespace Platformer
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            collisionManager = new CollisionManager();
+            level = new Level1(Content);
+            level.CreateWorld();
 
             base.Initialize();
             
@@ -40,7 +49,7 @@ namespace Platformer
 
         private void InitializeGameObjects()
         {
-            hero = new Hero(texture);
+            hero = new Hero(texture, new KeyboardReader());
         }
 
         protected override void Update(GameTime gameTime)
@@ -62,6 +71,7 @@ namespace Platformer
 
             _spriteBatch.Begin();
 
+            level.DrawWorld(_spriteBatch);
             hero.Draw(_spriteBatch);
 
             _spriteBatch.End();

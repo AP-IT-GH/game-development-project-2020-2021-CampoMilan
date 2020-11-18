@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Platformer.Animatie
 {
-    class AnimationFrame
+    public class AnimationFrame
     {
         public Rectangle SourceRectangle { get; set; }
 

@@ -1,2 +1,3 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"D:/school/AP/GameDev/GameDevProject/Platformer/Platformer/Content/spritesheetHero.png","D:/school/AP/GameDev/GameDevProject/Platformer/Platformer/Content/bin/Windows/spritesheetHero.xnb","TextureProcessor","Texture2DContent",407237,4194389,0,555768
+"D:/school/AP/GameDev/game-development-project-2020-2021-CampoMilan/Platformer/Platformer/Content/bgBlock.png","D:/school/AP/GameDev/game-development-project-2020-2021-CampoMilan/Platformer/Platformer/Content/bin/Windows/bgBlock.xnb","TextureProcessor","Texture2DContent",397,1309,0,19984
+"D:/school/AP/GameDev/game-development-project-2020-2021-CampoMilan/Platformer/Platformer/Content/Block.png","D:/school/AP/GameDev/game-development-project-2020-2021-CampoMilan/Platformer/Platformer/Content/bin/Windows/Block.xnb","TextureProcessor","Texture2DContent",726,1381,0,0140349

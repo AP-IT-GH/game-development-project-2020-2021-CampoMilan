@@ -4,9 +4,13 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>D:/school/AP/GameDev/GameDevProject/Platformer/Platformer/Content/spritesheetHero.png</File>
+    <File>D:/school/AP/GameDev/game-development-project-2020-2021-CampoMilan/Platformer/Platformer/Content/bgBlock.png</File>
+    <File>D:/school/AP/GameDev/game-development-project-2020-2021-CampoMilan/Platformer/Platformer/Content/Block.png</File>
+    <File>D:/school/AP/GameDev/game-development-project-2020-2021-CampoMilan/Platformer/Platformer/Content/spritesheetHero.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
   </DestFiles>
 </SourceFileCollection>

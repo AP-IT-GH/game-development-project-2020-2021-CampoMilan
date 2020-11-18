@@ -5,12 +5,12 @@ using System.Text;
 
 namespace Platformer.Animatie
 {
-    class Animation
+    public class Animation
     {
         public AnimationFrame CurrentFrame { get; set; }
+        public int Fps { get; set; }
 
         private List<AnimationFrame> frames;
-
         private int counter;
         private double frameMovement = 0;
 
@@ -30,7 +30,7 @@ namespace Platformer.Animatie
             CurrentFrame = frames[counter];
 
             frameMovement += CurrentFrame.SourceRectangle.Width * gameTime.ElapsedGameTime.TotalSeconds; //tijdsafhankelijke animatie ipv frame-afhankelijk
-            if (frameMovement >= CurrentFrame.SourceRectangle.Width/10) //Width delen door grotere getallen = snellere animatie
+            if (frameMovement >= CurrentFrame.SourceRectangle.Width/Fps) //Width delen door grotere getallen = snellere animatie
             {
                 counter++;
                 frameMovement = 0;

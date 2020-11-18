@@ -5,78 +5,69 @@ using Platformer.Animatie;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.Xna.Framework.Input;
+using Platformer.Input;
+using Platformer.Commands;
+using Platformer.Animatie.HeroAnimations;
 
 namespace Platformer
 {
-    class Hero : IGameObject
+    class Hero : IGameObject, ITransform
     {
-        Texture2D heroTexture;
-        Animation animation;
+        private Texture2D heroTexture;
 
-        private Vector2 position;
-        private Vector2 speed;
-        private Vector2 velocity;
+        private IInputReader input;
+        public Vector2 Position { get; set; }
 
+        private IGameCommand moveCommand;
 
-        public Hero(Texture2D texture)
+        IEntityAnimation walkRight;
+        IEntityAnimation walkLeft;
+        IEntityAnimation currentAnimation;
+        IEntityAnimation idle;
+
+        public Hero(Texture2D texture, IInputReader inputReader)
         {
+            // Animatie van hero initialiseren
             heroTexture = texture;
-            animation = new Animation();
-            animation.AddFrame(new AnimationFrame(new Rectangle(23, 0, 40, 85)));
-            animation.AddFrame(new AnimationFrame(new Rectangle(103, 0, 40, 85)));
-            animation.AddFrame(new AnimationFrame(new Rectangle(183, 0, 40, 85)));
-            animation.AddFrame(new AnimationFrame(new Rectangle(263, 0, 40, 85)));
-            animation.AddFrame(new AnimationFrame(new Rectangle(343, 0, 40, 85)));
-            animation.AddFrame(new AnimationFrame(new Rectangle(423, 0, 40, 85)));
-            animation.AddFrame(new AnimationFrame(new Rectangle(503, 0, 40, 85)));
-            animation.AddFrame(new AnimationFrame(new Rectangle(583, 0, 40, 85)));
-            animation.AddFrame(new AnimationFrame(new Rectangle(663, 0, 40, 85)));
-
-            position = new Vector2(10, 10);
-            speed = new Vector2(1, 1);
-            velocity = new Vector2(0.1f, 0.1f);
-        }
-
-        private void Move()
-        {
-            position += speed;
-            speed += velocity;
-            speed = Limit(speed,5); //limits the vector length of speed to 5
+            walkLeft = new WalkLeftAnimation(texture, this);
+            walkRight = new WalkRightAnimation(texture, this);
+            idle = new IdleAnimation(texture, this);
+            currentAnimation = idle;
             
-            //invert the movement when boundaries are hit
-            if (position.X > 600 || position.X < 0)
-            {
-                speed.X *= -1;
-                velocity.X *= -1;
-            }
-            if (position.Y > 400 || position.Y < 0)
-            {
-                speed.Y *= -1;
-                velocity.Y *= -1;
-            }
-        }
-
-        private Vector2 Limit(Vector2 v, float max)
-        {
-            if (v.Length() > max)
-            {
-                var ratio = max / v.Length();
-                v.X *= ratio;
-                v.Y *= ratio;
-            }
-            return v;
+            // Physics van hero initialiseren
+            Position = new Vector2(10, 10);
+            
+            //Controls for hero **input**
+            input = inputReader;
+            moveCommand = new MoveCommand();
         }
 
         public void Update(GameTime gameTime)
         {
-            Move();
-            animation.Update(gameTime);
+            var direction = input.ReadInput();
+            Move(direction);
+            currentAnimation.Update(gameTime);
+        }
+
+        private void Move(Vector2 _direction)
+        {
+            if (_direction.X == -1)
+            {
+                currentAnimation = walkLeft;
+            }
+            else if (_direction.X == 1)
+            {
+                currentAnimation = walkRight;
+            }
+
+            moveCommand.Execute(this, _direction);
+            currentAnimation = idle;
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(heroTexture, position, animation.CurrentFrame.SourceRectangle, Color.CornflowerBlue);
-
+            currentAnimation.Draw(spriteBatch);
         }
     }
 }
