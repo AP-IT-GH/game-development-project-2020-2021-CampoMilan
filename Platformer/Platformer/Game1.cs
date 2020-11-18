@@ -29,7 +29,7 @@ namespace Platformer
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            //source sprites voor blokjes en achtergrond: https://opengameart.org/content/inca-tileset 
             collisionManager = new CollisionManager();
             level = new Level1(Content);
             level.CreateWorld();
@@ -41,8 +41,8 @@ namespace Platformer
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            texture = Content.Load<Texture2D>("spritesheetHero");
+            
+            texture = Content.Load<Texture2D>("spritesheetHero"); // Source: https://www.reddit.com/r/spelunky/comments/8zlje0/a_sprite_sheet_of_my_custom_if_anyone_wants_to/
 
             InitializeGameObjects();
         }
