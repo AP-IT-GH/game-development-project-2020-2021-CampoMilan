@@ -12,32 +12,31 @@ using Platformer.Animatie.HeroAnimations;
 
 namespace Platformer
 {
-    class Hero : IGameObject, ITransform
+    class Hero : IGameObject, ITransform, ICollision
     {
         private Texture2D heroTexture;
+        private Rectangle collisionRect;
+        private IGameCommand moveCommand;
 
         private IInputReader input;
         public Vector2 Position { get; set; }
-
-        private IGameCommand moveCommand;
-
+        public Rectangle CollisionRectangle { get; set; }
         IEntityAnimation walkRight;
         IEntityAnimation walkLeft;
         IEntityAnimation currentAnimation;
-        IEntityAnimation idle;
 
-        public Hero(Texture2D texture, IInputReader inputReader)
+        public Hero(Texture2D texture, IInputReader inputReader, Vector2 _position)
         {
             // Animatie van hero initialiseren
             heroTexture = texture;
             walkLeft = new WalkLeftAnimation(texture, this);
             walkRight = new WalkRightAnimation(texture, this);
-            idle = new IdleAnimation(texture, this);
-            currentAnimation = idle;
+            currentAnimation = walkLeft;
             
             // Physics van hero initialiseren
-            Position = new Vector2(10, 10);
-            
+            Position = _position;
+            collisionRect = new Rectangle((int)Position.X, (int)Position.Y, 40, 85);
+
             //Controls for hero **input**
             input = inputReader;
             moveCommand = new MoveCommand();
@@ -48,6 +47,9 @@ namespace Platformer
             var direction = input.ReadInput();
             Move(direction);
             currentAnimation.Update(gameTime);
+            collisionRect.X = (int)Position.X;
+            collisionRect.Y = (int)Position.Y;
+            
         }
 
         private void Move(Vector2 _direction)
@@ -60,9 +62,7 @@ namespace Platformer
             {
                 currentAnimation = walkRight;
             }
-
             moveCommand.Execute(this, _direction);
-            currentAnimation = idle;
         }
 
         public void Draw(SpriteBatch spriteBatch)

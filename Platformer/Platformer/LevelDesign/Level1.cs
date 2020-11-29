@@ -45,17 +45,17 @@ namespace Platformer.LevelDesign
 
         public void CreateWorld()
         {
-            for (int x = 0; x < 6; x++)
+            for (int x = 0; x < 5; x++)
             {
-                for (int y = 0; y < 7; y++)
+                for (int y = 0; y < 6; y++)
                 {
                     switch (tileArray[x, y])
                     {
                         case 1:
-                            blokArray[x, y] = new Blok(blockTexture, new Vector2(y * 128, x * 64));
+                            blokArray[x, y] = new Blok(blockTexture, new Vector2(y * 17, x * 17));
                             break;
                         case 0:
-                            bgArray[x, y] = new BackgroundBlok(bgTexture, new Vector2(y * 128, x * 64));
+                            bgArray[x, y] = new BackgroundBlok(bgTexture, new Vector2(y * 17, x * 17));
                             break;
                     }
 
@@ -65,12 +65,18 @@ namespace Platformer.LevelDesign
 
         public void DrawWorld(SpriteBatch spriteBatch)
         {
-            for (int x = 0; x < 7; x++)
+            for (int x = 0; x < 5; x++)
             {
                 for (int y = 0; y < 6; y++)
                 {
-                    blokArray[x, y].Draw(spriteBatch);
-                    bgArray[x, y].Draw(spriteBatch);
+                    if (blokArray[x,y] != null)
+                    {
+                        blokArray[x, y].Draw(spriteBatch);
+                    }
+                    if (bgArray[x,y] != null)
+                    {
+                        bgArray[x, y].Draw(spriteBatch);
+                    }
                 }
             }
         }
