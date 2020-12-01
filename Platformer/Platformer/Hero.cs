@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Input;
 using Platformer.Input;
 using Platformer.Commands;
 using Platformer.Animatie.HeroAnimations;
+using Platformer.Collision;
 
 namespace Platformer
 {
@@ -17,12 +18,17 @@ namespace Platformer
         private Texture2D heroTexture;
         private Rectangle collisionRect;
         private IGameCommand moveCommand;
+        
 
         private IInputReader input;
         public Vector2 Position { get; set; }
-        public Rectangle CollisionRectangle { get; set; }
+        public Rectangle CollisionRectangle { get => collisionRect; set => collisionRect = value; }
+        public CollisionLocation collisionLocation;
+        private CollisionManager collisionManager;
+
         IEntityAnimation walkRight;
         IEntityAnimation walkLeft;
+        IEntityAnimation idle;
         IEntityAnimation currentAnimation;
 
         public Hero(Texture2D texture, IInputReader inputReader, Vector2 _position)
@@ -31,11 +37,13 @@ namespace Platformer
             heroTexture = texture;
             walkLeft = new WalkLeftAnimation(texture, this);
             walkRight = new WalkRightAnimation(texture, this);
-            currentAnimation = walkLeft;
-            
+            idle = new IdleAnimation(texture, this);
+            currentAnimation = idle;
+
             // Physics van hero initialiseren
             Position = _position;
             collisionRect = new Rectangle((int)Position.X, (int)Position.Y, 40, 85);
+            collisionManager = new CollisionManager();
 
             //Controls for hero **input**
             input = inputReader;
@@ -49,7 +57,7 @@ namespace Platformer
             currentAnimation.Update(gameTime);
             collisionRect.X = (int)Position.X;
             collisionRect.Y = (int)Position.Y;
-            
+
         }
 
         private void Move(Vector2 _direction)
@@ -62,7 +70,11 @@ namespace Platformer
             {
                 currentAnimation = walkRight;
             }
-            moveCommand.Execute(this, _direction);
+            else if (_direction.X == 0)
+            {
+                currentAnimation = idle;
+            }
+            moveCommand.Execute(this, _direction, collisionLocation);
         }
 
         public void Draw(SpriteBatch spriteBatch)

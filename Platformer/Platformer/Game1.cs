@@ -54,8 +54,8 @@ namespace Platformer
 
         private void InitializeGameObjects()
         {
-            hero = new Hero(textureHero, new KeyboardReader(), new Vector2(50,265));
-            blokje = new Blok(textureBlok, new Vector2(100, 265));
+            hero = new Hero(textureHero, new KeyboardReader(), new Vector2(50,10));
+            blokje = new Blok(textureBlok, new Vector2(100, 10));
         }
 
         protected override void Update(GameTime gameTime)
@@ -67,10 +67,12 @@ namespace Platformer
             // TODO: Add your update logic here
 
             hero.Update(gameTime);
-            if (collisionManager.CheckCollision(hero.CollisionRectangle, blokje.CollisionRectangle))
+            if (collisionManager.CheckCollision(hero.CollisionRectangle, blokje.CollisionRectangle)!= CollisionLocation.None)
             {
-                Debug.WriteLine("Collision");
+                Debug.WriteLine(collisionManager.CheckCollision(hero.CollisionRectangle, blokje.CollisionRectangle).ToString());
+                hero.collisionLocation = collisionManager.CheckCollision(hero.CollisionRectangle, blokje.CollisionRectangle);
             }
+            
             
 
             base.Update(gameTime);

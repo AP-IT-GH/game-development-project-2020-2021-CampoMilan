@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Platformer.Interfaces
 {
-    interface ICollision
+    public interface ICollision
     {
         public Rectangle CollisionRectangle { get; set; }
     }

@@ -12,7 +12,11 @@ namespace Platformer.Animatie.HeroAnimations
         private Animation _animation;
         Texture2D texture;
         ITransform transform;
-
+        public Animation Animation
+        {
+            get { return _animation; }
+            set { _animation = value; }
+        }
         public WalkLeftAnimation(Texture2D texture, ITransform transform)
         {
             this.transform = transform;
@@ -30,11 +34,6 @@ namespace Platformer.Animatie.HeroAnimations
             _animation.Fps = 10;
         }
 
-        public Animation Animation 
-        { 
-            get { return _animation; } 
-            set { _animation = value; } 
-        }
 
         public void Draw(SpriteBatch spriteBatch)
         {

@@ -12,7 +12,7 @@ namespace Platformer.World
         private Rectangle collisionRect;
         public Texture2D Texture { get; set; }
         public Vector2 Position { get; set; }
-        public Rectangle CollisionRectangle { get; set; }
+        public Rectangle CollisionRectangle { get => collisionRect; set => collisionRect = value; }
 
         public Blok(Texture2D _texture, Vector2 _position)
         {

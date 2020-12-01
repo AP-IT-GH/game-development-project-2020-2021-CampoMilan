@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Platformer.Collision;
 using Platformer.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -12,13 +13,13 @@ namespace Platformer.Commands
 
         public MoveCommand()
         {
-            this.speed = new Vector2(1, 0);
+            this.speed = new Vector2(5, 0);
         }
-        public void Execute(ITransform transform, Vector2 direction)
+
+        public void Execute(ITransform transform, Vector2 direction, CollisionLocation _collisionLocation)
         {
             direction *= speed;
             transform.Position += direction;
         }
-
     }
 }
