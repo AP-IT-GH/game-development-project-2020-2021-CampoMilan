@@ -23,8 +23,6 @@ namespace Platformer
         private IInputReader input;
         public Vector2 Position { get; set; }
         public Rectangle CollisionRectangle { get => collisionRect; set => collisionRect = value; }
-        public CollisionLocation collisionLocation;
-        private CollisionManager collisionManager;
 
         IEntityAnimation walkRight;
         IEntityAnimation walkLeft;
@@ -43,7 +41,6 @@ namespace Platformer
             // Physics van hero initialiseren
             Position = _position;
             collisionRect = new Rectangle((int)Position.X, (int)Position.Y, 40, 85);
-            collisionManager = new CollisionManager();
 
             //Controls for hero **input**
             input = inputReader;
@@ -74,7 +71,7 @@ namespace Platformer
             {
                 currentAnimation = idle;
             }
-            moveCommand.Execute(this, _direction, collisionLocation);
+            moveCommand.Execute(this, _direction, CollisionRectangle);
         }
 
         public void Draw(SpriteBatch spriteBatch)
