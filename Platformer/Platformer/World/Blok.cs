@@ -7,9 +7,11 @@ using System.Text;
 
 namespace Platformer.World
 {
-    class Blok : ICollision
+    public class Blok : ICollision
     {
         private Rectangle collisionRect;
+        public int Width { get; set; } = 17;
+        public int Height { get; set; } = 17;
         public Texture2D Texture { get; set; }
         public Vector2 Position { get; set; }
         public Rectangle CollisionRectangle { get => collisionRect; set => collisionRect = value; }
@@ -18,7 +20,7 @@ namespace Platformer.World
         {
             Texture = _texture;
             Position = _position;
-            collisionRect = new Rectangle((int)_position.X, (int)_position.Y, 17, 17);
+            collisionRect = new Rectangle((int)_position.X, (int)_position.Y, Width, Height);
         }
 
         public void Update()
@@ -30,7 +32,7 @@ namespace Platformer.World
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, Position, Color.White);
+            spriteBatch.Draw(Texture, Position, Color.White); 
         }
     }
 }

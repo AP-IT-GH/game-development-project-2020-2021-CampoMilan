@@ -9,6 +9,6 @@ namespace Platformer.Commands
 {
     public interface IGameCommand
     {
-        void Execute(ITransform transform, Vector2 direction, Rectangle collisionRectangle);
+        void Execute(ITransform transform, Vector2 direction, ICollisionMoving movingObject);
     }
 }

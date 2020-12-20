@@ -22,7 +22,7 @@ namespace Platformer
 
         CollisionManager collisionManager;
 
-        //Level1 level;
+        Level currentLevel;
 
         public Game1()
         {
@@ -34,9 +34,10 @@ namespace Platformer
         protected override void Initialize()
         {
             //source sprites voor blokjes en achtergrond: https://opengameart.org/content/inca-tileset 
-            collisionManager = new CollisionManager();
-            //level = new Level1(Content);
-            //level.CreateWorld();
+            
+            currentLevel = new Level1();
+            collisionManager = new CollisionManager(currentLevel.blokTileArray);
+            currentLevel.CreateWorld();
 
             base.Initialize();
             
@@ -54,7 +55,7 @@ namespace Platformer
 
         private void InitializeGameObjects()
         {
-            hero = new Hero(textureHero, new KeyboardReader(), new Vector2(50,10));
+            hero = new Hero(textureHero, new KeyboardReader(), new Vector2(50,10), collisionManager);
             blokje = new Blok(textureBlok, new Vector2(100, 10));
         }
 
@@ -67,11 +68,6 @@ namespace Platformer
             // TODO: Add your update logic here
 
             hero.Update(gameTime);
-            if (collisionManager.CheckCollision(hero.CollisionRectangle, blokje.CollisionRectangle)!= CollisionLocation.None)
-            {
-                Debug.WriteLine(collisionManager.CheckCollision(hero.CollisionRectangle, blokje.CollisionRectangle).ToString());
-                hero.collisionLocation = collisionManager.CheckCollision(hero.CollisionRectangle, blokje.CollisionRectangle);
-            }
             
             
 

@@ -13,9 +13,9 @@ namespace Platformer.LevelDesign
         protected Texture2D blockTexture;
         protected Texture2D bgTexture;
 
-        protected byte[,] byteTileArray;
-        private Blok[,] blokTileArray;
-        private BackgroundBlok[,] bgTileArray;
+        public byte[,] byteTileArray;
+        public Blok[,] blokTileArray;
+        public BackgroundBlok[,] bgTileArray;
 
         private ContentManager content;
 
@@ -23,6 +23,8 @@ namespace Platformer.LevelDesign
         {
             CreateTileArray();
             blokTileArray = new Blok[byteTileArray.GetLength(0), byteTileArray.GetLength(1)];
+            bgTileArray = new BackgroundBlok[byteTileArray.GetLength(0), byteTileArray.GetLength(1)];
+
             CreateWorld();
             InitializeContent();
         }
@@ -33,10 +35,10 @@ namespace Platformer.LevelDesign
             bgTexture = content.Load<Texture2D>("bgBlock");
         }
 
-        protected abstract void CreateTileArray();
+        public abstract void CreateTileArray();
 
 
-        private void CreateWorld()
+        public void CreateWorld()
         {
             for (int x = 0; x < byteTileArray.GetLength(0); x++)
             {

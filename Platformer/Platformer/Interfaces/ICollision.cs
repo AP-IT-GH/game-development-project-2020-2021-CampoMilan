@@ -9,4 +9,9 @@ namespace Platformer.Interfaces
     {
         public Rectangle CollisionRectangle { get; set; }
     }
+
+    public interface ICollisionMoving : ICollision
+    {
+        public Rectangle FutureCollisionRectangle { get; set; }
+    }
 }

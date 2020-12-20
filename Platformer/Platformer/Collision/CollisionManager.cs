@@ -1,6 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
+using Platformer.Interfaces;
+using Platformer.World;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace Platformer.Collision
@@ -15,16 +18,26 @@ namespace Platformer.Collision
     }
     public class CollisionManager
     {
-        Rectangle staticObject;
-        
-        public Vector2 CheckCollision(Rectangle movingObject, Vector2 direction)
-        {
-            movingObject.X += (int)direction.X * 5; //check future rectangle X coord
-            movingObject.Y += (int)direction.Y * 5; //check future rectangle Y coord
+        List<ICollision> staticObjects;
 
-            if (movingObject.Intersects(staticObject))
+        public CollisionManager(Blok[,] blokTileArray)
+        {
+            staticObjects = new List<ICollision>();
+
+            foreach (var item in blokTileArray)
             {
-                return Vector2.Zero; //direction becomes zero
+                staticObjects.Add(item);
+            }
+        }
+        public Vector2 CheckCollision(ICollisionMoving movingObject, Vector2 direction)
+        {
+            foreach (var staticObject in staticObjects)
+            {
+                if (movingObject.FutureCollisionRectangle.Intersects(staticObject.CollisionRectangle))
+                {
+                    Debug.WriteLine("Collision");
+                    return Vector2.Zero; //direction becomes zero
+                }
             }
             return direction;
         }

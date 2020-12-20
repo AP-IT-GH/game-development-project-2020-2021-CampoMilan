@@ -8,14 +8,14 @@ using System.Text;
 
 namespace Platformer.LevelDesign
 {
-    class Level1 : Level
+    public class Level1 : Level
     {
         /* level elementen:
             0 = achtergrond,
             1 = blok
          */
 
-        protected override void CreateTileArray()
+        public override void CreateTileArray()
         {
             byteTileArray = new Byte[,]
         {
