@@ -12,7 +12,6 @@ namespace Platformer.Commands
     {
         public Vector2 speed;
         private CollisionManager collisionManager;
-        private Level level;
 
         public MoveCommand(CollisionManager _collisionManager)
         {
@@ -23,9 +22,13 @@ namespace Platformer.Commands
 
         public void Execute(ITransform transform, Vector2 direction, ICollisionMoving movingObject)
         {
-            collisionManager.CheckCollision(movingObject, direction);
-            direction *= speed;
-            transform.Position += direction;
+            direction = collisionManager.CheckCollision(movingObject, direction);
+            if (direction != Vector2.Zero)
+            {
+                direction *= speed;
+                transform.Position += direction;
+            }
+            
         }
     }
 }

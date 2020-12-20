@@ -33,11 +33,15 @@ namespace Platformer.Collision
         {
             foreach (var staticObject in staticObjects)
             {
-                if (movingObject.FutureCollisionRectangle.Intersects(staticObject.CollisionRectangle))
+                if (staticObject != null)
                 {
-                    Debug.WriteLine("Collision");
-                    return Vector2.Zero; //direction becomes zero
+                    if (movingObject.FutureCollisionRectangle.Intersects(staticObject.CollisionRectangle))
+                    {
+                        Debug.WriteLine("Collision");
+                        return Vector2.Zero; //direction becomes zero
+                    }
                 }
+                
             }
             return direction;
         }
