@@ -38,6 +38,8 @@ namespace Platformer.Collision
                     if (movingObject.FutureCollisionRectangle.Intersects(staticObject.CollisionRectangle))
                     {
                         Debug.WriteLine("Collision");
+                        Debug.WriteLine("blokje" + staticObject.CollisionRectangle.Location);
+                        Debug.WriteLine(staticObject);
                         return Vector2.Zero; //direction becomes zero
                     }
                 }

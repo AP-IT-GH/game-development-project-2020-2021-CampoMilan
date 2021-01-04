@@ -10,6 +10,7 @@ using Platformer.Input;
 using Platformer.Commands;
 using Platformer.Animatie.HeroAnimations;
 using Platformer.Collision;
+using System.Diagnostics;
 
 namespace Platformer
 {
@@ -43,8 +44,8 @@ namespace Platformer
 
             // Physics van hero initialiseren
             Position = _position;
-            collisionRect = new Rectangle((int)Position.X, (int)Position.Y, 40, 85);
-            futureColRect = new Rectangle(collisionRect.X + (collisionRect.Width * (int)_direction.X), collisionRect.Y + (collisionRect.Height * (int)_direction.Y), 40, 85);
+            collisionRect = new Rectangle((int)Position.X, (int)Position.Y, 22, 34);
+            futureColRect = new Rectangle(collisionRect.X + (int)_direction.X, collisionRect.Y + (int)_direction.Y, 22, 34);
 
             //Controls for hero **input**
             input = inputReader;
@@ -58,6 +59,9 @@ namespace Platformer
             currentAnimation.Update(gameTime);
             collisionRect.X = (int)Position.X;
             collisionRect.Y = (int)Position.Y;
+            Debug.WriteLine("Position: " + Position);
+            Debug.WriteLine("future Collision: " + futureColRect);
+
 
         }
 
@@ -66,12 +70,12 @@ namespace Platformer
             if (_direction.X == -1)
             {
                 currentAnimation = walkLeft;
-                futureColRect.X -= collisionRect.Width;
+                futureColRect.X = (int)Position.X -1;
             }
             else if (_direction.X == 1)
             {
                 currentAnimation = walkRight;
-                futureColRect.X += collisionRect.Width;
+                futureColRect.X = (int)Position.X + 1;
             }
             else if (_direction.X == 0)
             {

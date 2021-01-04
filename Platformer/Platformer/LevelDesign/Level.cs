@@ -18,12 +18,15 @@ namespace Platformer.LevelDesign
         public BackgroundBlok[,] bgTileArray;
 
 
-        public Level()
+        public Level(Texture2D _background, Texture2D _block)
         {
             CreateTileArray();
             blokTileArray = new Blok[byteTileArray.GetLength(0), byteTileArray.GetLength(1)];
             bgTileArray = new BackgroundBlok[byteTileArray.GetLength(0), byteTileArray.GetLength(1)];
-
+            
+            bgTexture = _background;
+            blockTexture = _block;
+            
             CreateWorld();
         }
 

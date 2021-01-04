@@ -17,8 +17,8 @@ namespace Platformer
 
         private Texture2D textureBlok;
         private Texture2D textureHero;
+        private Texture2D textureBG;
         Hero hero;
-        Blok blokje;
 
         CollisionManager collisionManager;
 
@@ -34,13 +34,11 @@ namespace Platformer
         protected override void Initialize()
         {
             //source sprites voor blokjes en achtergrond: https://opengameart.org/content/inca-tileset 
-            
-            currentLevel = new Level1();
-            collisionManager = new CollisionManager(currentLevel.blokTileArray);
-            currentLevel.CreateWorld();
+
 
             base.Initialize();
-            
+
+
         }
 
         protected override void LoadContent()
@@ -49,14 +47,19 @@ namespace Platformer
             
             textureHero = Content.Load<Texture2D>("spritesheetHero"); // Source: https://www.reddit.com/r/spelunky/comments/8zlje0/a_sprite_sheet_of_my_custom_if_anyone_wants_to/
             textureBlok = Content.Load<Texture2D>("Block");
+            textureBG = Content.Load<Texture2D>("bgBlock");
 
             InitializeGameObjects();
         }
 
         private void InitializeGameObjects()
         {
+            currentLevel = new Level1(textureBG, textureBlok);
+            collisionManager = new CollisionManager(currentLevel.blokTileArray);
+            currentLevel.CreateWorld();
             hero = new Hero(textureHero, new KeyboardReader(), new Vector2(50,10), collisionManager);
-            blokje = new Blok(textureBlok, new Vector2(100, 10));
+            //blokje = new Blok(textureBlok, new Vector2(1000, 10));
+            
         }
 
         protected override void Update(GameTime gameTime)
@@ -80,9 +83,9 @@ namespace Platformer
 
             _spriteBatch.Begin();
 
-            //level.DrawWorld(_spriteBatch);
+            currentLevel.Draw(_spriteBatch);
             hero.Draw(_spriteBatch);
-            blokje.Draw(_spriteBatch);
+            //blokje.Draw(_spriteBatch);
 
             _spriteBatch.End();
 

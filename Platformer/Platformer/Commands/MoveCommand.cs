@@ -15,20 +15,16 @@ namespace Platformer.Commands
 
         public MoveCommand(CollisionManager _collisionManager)
         {
-            collisionManager = _collisionManager;    
-            this.speed = new Vector2(5, 0);
+            collisionManager = _collisionManager;
+            this.speed = new Vector2(3, 0);
             //TODO: tile mapping doorgeven via de constructor (even niet aan SOLID denken, eerst gewoon werkende krijgen)
         }
 
         public void Execute(ITransform transform, Vector2 direction, ICollisionMoving movingObject)
         {
             direction = collisionManager.CheckCollision(movingObject, direction);
-            if (direction != Vector2.Zero)
-            {
-                direction *= speed;
-                transform.Position += direction;
-            }
-            
+            direction *= speed;
+            transform.Position += direction;
         }
     }
 }
