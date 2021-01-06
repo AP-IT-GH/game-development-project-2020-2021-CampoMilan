@@ -13,5 +13,7 @@ namespace Platformer.Interfaces
     public interface ICollisionMoving : ICollision
     {
         public Rectangle FutureCollisionRectangle { get; set; }
+        public bool IsOnGround { get; set; }
+        public Vector2 Gravity { get; set; }
     }
 }

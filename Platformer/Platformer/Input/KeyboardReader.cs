@@ -10,15 +10,21 @@ namespace Platformer.Input
     {
         public Vector2 ReadInput()
         {
-            var direction = Vector2.Zero;
+            var direction = new Vector2(0,0);
             KeyboardState state = Keyboard.GetState();
             if (state.IsKeyDown(Keys.Left))
             {
-                direction = new Vector2(-1, 0);
+                direction.X = -1f;
+                direction.Y = -0.1f;
             }
             if (state.IsKeyDown(Keys.Right))
             {
-                direction = new Vector2(1, 0);
+                direction.X = 1f;
+                direction.Y = -0.1f;
+            }
+            if (state.IsKeyDown(Keys.Up))
+            {
+                direction.Y = -1f;
             }
             return direction;
         }

@@ -10,20 +10,20 @@ namespace Platformer.Commands
 {
     class MoveCommand : IGameCommand
     {
-        public Vector2 speed;
+        public Vector2 Speed;
         private CollisionManager collisionManager;
 
         public MoveCommand(CollisionManager _collisionManager)
         {
             collisionManager = _collisionManager;
-            this.speed = new Vector2(3, 0);
-            //TODO: tile mapping doorgeven via de constructor (even niet aan SOLID denken, eerst gewoon werkende krijgen)
+            this.Speed = new Vector2(1, 1);
         }
 
         public void Execute(ITransform transform, Vector2 direction, ICollisionMoving movingObject)
         {
             direction = collisionManager.CheckCollision(movingObject, direction);
-            direction *= speed;
+
+            direction *= Speed;
             transform.Position += direction;
         }
     }

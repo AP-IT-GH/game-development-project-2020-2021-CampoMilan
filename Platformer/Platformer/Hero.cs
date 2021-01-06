@@ -21,12 +21,15 @@ namespace Platformer
         private Rectangle futureColRect;
         private IGameCommand moveCommand;
         private Vector2 _direction;
-        
+
+
 
         private IInputReader input;
         public Vector2 Position { get; set; }
         public Rectangle CollisionRectangle { get => collisionRect; set => collisionRect = value; }
         public Rectangle FutureCollisionRectangle { get => futureColRect; set => futureColRect = value; }
+        public bool IsOnGround { get; set; }
+        public Vector2 Gravity { get; set; }
 
         IEntityAnimation walkRight;
         IEntityAnimation walkLeft;
@@ -44,8 +47,9 @@ namespace Platformer
 
             // Physics van hero initialiseren
             Position = _position;
-            collisionRect = new Rectangle((int)Position.X, (int)Position.Y, 22, 34);
-            futureColRect = new Rectangle(collisionRect.X + (int)_direction.X, collisionRect.Y + (int)_direction.Y, 22, 34);
+            collisionRect = new Rectangle((int)Position.X, (int)Position.Y, 22, 32);
+            futureColRect = new Rectangle(collisionRect.X + (int)_direction.X, collisionRect.Y + (int)_direction.Y, 22, 32);
+            Gravity = new Vector2(0, 2);
 
             //Controls for hero **input**
             input = inputReader;
@@ -55,14 +59,26 @@ namespace Platformer
         public void Update(GameTime gameTime)
         {
             _direction = input.ReadInput();
+            ApplyPhysics();
             Move(_direction);
             currentAnimation.Update(gameTime);
             collisionRect.X = (int)Position.X;
             collisionRect.Y = (int)Position.Y;
-            Debug.WriteLine("Position: " + Position);
-            Debug.WriteLine("future Collision: " + futureColRect);
+            //Debug.WriteLine("future Collision: " + futureColRect);
 
 
+        }
+
+        private void ApplyPhysics()
+        {
+            if (!IsOnGround)
+            {
+                _direction += Gravity;
+            }
+            else
+            {
+                _direction.Y += -1f;
+            }
         }
 
         private void Move(Vector2 _direction)
@@ -70,17 +86,19 @@ namespace Platformer
             if (_direction.X == -1)
             {
                 currentAnimation = walkLeft;
-                futureColRect.X = (int)Position.X -1;
+                futureColRect.X = (int)CollisionRectangle.X -1;
             }
             else if (_direction.X == 1)
             {
                 currentAnimation = walkRight;
-                futureColRect.X = (int)Position.X + 1;
+                futureColRect.X = (int)CollisionRectangle.X + 1;
             }
             else if (_direction.X == 0)
             {
                 currentAnimation = idle;
+                futureColRect.X = (int)Position.X;
             }
+            futureColRect.Y = (int)Position.Y + 8;
             moveCommand.Execute(this, _direction, this);
         }
 

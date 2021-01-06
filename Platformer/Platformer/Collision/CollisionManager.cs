@@ -35,16 +35,32 @@ namespace Platformer.Collision
             {
                 if (staticObject != null)
                 {
+                    
                     if (movingObject.FutureCollisionRectangle.Intersects(staticObject.CollisionRectangle))
                     {
-                        Debug.WriteLine("Collision");
-                        Debug.WriteLine("blokje" + staticObject.CollisionRectangle.Location);
-                        Debug.WriteLine(staticObject);
-                        return Vector2.Zero; //direction becomes zero
+                        if (movingObject.FutureCollisionRectangle.Bottom >= staticObject.CollisionRectangle.Y)
+                        {
+                            movingObject.IsOnGround = true;
+
+                            if (movingObject.FutureCollisionRectangle.Left < staticObject.CollisionRectangle.Right)
+                            {
+                                direction.X = 0;
+                                return direction;
+                            }
+                            if (movingObject.FutureCollisionRectangle.Right > staticObject.CollisionRectangle.Left)
+                            {
+                                direction.X = 0;
+                                return direction;
+                            }
+                        }
+                        return Vector2.Zero;
                     }
+                    
                 }
                 
             }
+            Debug.WriteLine("Direction value: " + direction);
+            movingObject.IsOnGround = false;
             return direction;
         }
     }
