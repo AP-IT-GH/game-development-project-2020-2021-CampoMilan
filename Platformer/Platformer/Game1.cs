@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Platformer.Collision;
+using Platformer.GamestateManagement;
 using Platformer.Input;
 using Platformer.LevelDesign;
 using Platformer.World;
@@ -22,6 +23,7 @@ namespace Platformer
 
         CollisionManager collisionManager;
 
+        private GamestateManager gamestateManager;
         Level currentLevel;
 
         public Game1()
@@ -33,16 +35,15 @@ namespace Platformer
 
         protected override void Initialize()
         {
-            //source sprites voor blokjes en achtergrond: https://opengameart.org/content/inca-tileset 
 
 
             base.Initialize();
-
 
         }
 
         protected override void LoadContent()
         {
+            //source sprites voor blokjes en achtergrond: https://opengameart.org/content/inca-tileset 
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             
             textureHero = Content.Load<Texture2D>("spritesheetHero"); // Source: https://www.reddit.com/r/spelunky/comments/8zlje0/a_sprite_sheet_of_my_custom_if_anyone_wants_to/
@@ -54,6 +55,9 @@ namespace Platformer
 
         private void InitializeGameObjects()
         {
+
+            gamestateManager = new GamestateManager();
+
             currentLevel = new Level1(textureBG, textureBlok);
             collisionManager = new CollisionManager(currentLevel.blokTileArray);
             currentLevel.CreateWorld();
@@ -68,14 +72,14 @@ namespace Platformer
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            base.Update(gameTime);
+
+            gamestateManager.CurrentState.Update(gameTime, gamestateManager);
 
             hero.Update(gameTime);
-            
-            
 
-            base.Update(gameTime);
         }
+
 
         protected override void Draw(GameTime gameTime)
         {
