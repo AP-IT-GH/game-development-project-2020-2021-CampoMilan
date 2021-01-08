@@ -24,7 +24,6 @@ namespace Platformer
 
 
         private GraphicsDeviceManager _graphics;
-        private SpriteBatch _spriteBatch;
 
         private Texture2D textureBlok;
         private Texture2D textureHero;
@@ -54,10 +53,9 @@ namespace Platformer
 
         protected override void LoadContent()
         {
-            //source sprites voor blokjes en achtergrond: https://opengameart.org/content/inca-tileset 
             Globals.spriteBatch = new SpriteBatch(GraphicsDevice);
             
-            textureHero = Globals.content.Load<Texture2D>("spritesheetHero"); // Source: https://www.reddit.com/r/spelunky/comments/8zlje0/a_sprite_sheet_of_my_custom_if_anyone_wants_to/
+            textureHero = Globals.content.Load<Texture2D>("spritesheetHero");
             textureBlok = Globals.content.Load<Texture2D>("Block");
             textureBG = Globals.content.Load<Texture2D>("bgBlock");
 
@@ -67,13 +65,15 @@ namespace Platformer
         private void InitializeGameObjects()
         {
 
-            gamestateManager = new GamestateManager();
+            //gamestateManager = new GamestateManager();
+
+            //gamestateManager.ChangeGamestateTo(gamestateManager.GameplayState);
 
             currentLevel = new Level1(textureBG, textureBlok);
             collisionManager = new CollisionManager(currentLevel.blokTileArray);
             currentLevel.CreateWorld();
             hero = new Hero(textureHero, new KeyboardReader(), new Vector2(50,10), collisionManager);
-            //blokje = new Blok(textureBlok, new Vector2(1000, 10));
+            //blokje = new Blok(textureBlok, new Vector2(1000, 10)); //TEST BLOKJE
             
         }
 
@@ -85,8 +85,8 @@ namespace Platformer
 
             base.Update(gameTime);
 
-            gamestateManager.CurrentState.Update(gameTime, gamestateManager);
-
+            //gamestateManager.CurrentState.Update(gameTime, gamestateManager);
+            
             hero.Update(gameTime);
 
         }
@@ -98,9 +98,9 @@ namespace Platformer
 
             Globals.spriteBatch.Begin();
 
-            currentLevel.Draw(Globals.spriteBatch);
-            hero.Draw(Globals.spriteBatch);
-            //blokje.Draw(_spriteBatch);
+            currentLevel.Draw();
+            hero.Draw();
+            //blokje.Draw(_spriteBatch); // TEST BLOKJE
 
             Globals.spriteBatch.End();
 

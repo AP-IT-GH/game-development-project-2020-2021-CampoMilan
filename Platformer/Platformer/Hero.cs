@@ -102,9 +102,9 @@ namespace Platformer
             moveCommand.Execute(this, _direction, this);
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw()
         {
-            currentAnimation.Draw(spriteBatch);
+            currentAnimation.Draw();
         }
     }
 }

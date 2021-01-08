@@ -17,9 +17,9 @@ namespace Platformer.World
             Position = _position;
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw()
         {
-            spriteBatch.Draw(Texture, Position, Color.White);
+            Globals.spriteBatch.Draw(Texture, Position, Color.White);
         }
     }
 }

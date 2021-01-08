@@ -8,8 +8,6 @@ namespace Platformer
 {
     public class Globals
     {
-        15.32
-
         public static ContentManager content;
         public static SpriteBatch spriteBatch;
     }

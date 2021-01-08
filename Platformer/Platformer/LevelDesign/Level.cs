@@ -52,7 +52,7 @@ namespace Platformer.LevelDesign
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw()
         {
             for (int x = 0; x < byteTileArray.GetLength(0); x++)
             {
@@ -60,11 +60,11 @@ namespace Platformer.LevelDesign
                 {
                     if (blokTileArray[x, y] != null)
                     {
-                        blokTileArray[x, y].Draw(spriteBatch);
+                        blokTileArray[x, y].Draw();
                     }
                     if (bgTileArray[x, y] != null)
                     {
-                        bgTileArray[x, y].Draw(spriteBatch);
+                        bgTileArray[x, y].Draw();
                     }
                 }
             }
