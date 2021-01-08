@@ -13,6 +13,16 @@ namespace Platformer
 {
     public class Game1 : Game
     {
+        /* Referenties:
+         * Algemene kennis over MonoGame en hoe een game te structureren:
+         * Youtube kanaal -- Batholith Entertainment (https://youtube.com/playlist?list=PLZ6ofHM1rvK8lQSoKX1USZstM-ZXikFHp)
+         * 
+         * block sprites: https://opengameart.org/content/inca-tileset
+         * hero sprite: https://www.reddit.com/r/spelunky/comments/8zlje0/a_sprite_sheet_of_my_custom_if_anyone_wants_to/
+         * 
+         */
+
+
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
@@ -29,7 +39,8 @@ namespace Platformer
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
-            Content.RootDirectory = "Content";
+            Globals.content = this.Content;
+            Globals.content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
 
@@ -44,11 +55,11 @@ namespace Platformer
         protected override void LoadContent()
         {
             //source sprites voor blokjes en achtergrond: https://opengameart.org/content/inca-tileset 
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
+            Globals.spriteBatch = new SpriteBatch(GraphicsDevice);
             
-            textureHero = Content.Load<Texture2D>("spritesheetHero"); // Source: https://www.reddit.com/r/spelunky/comments/8zlje0/a_sprite_sheet_of_my_custom_if_anyone_wants_to/
-            textureBlok = Content.Load<Texture2D>("Block");
-            textureBG = Content.Load<Texture2D>("bgBlock");
+            textureHero = Globals.content.Load<Texture2D>("spritesheetHero"); // Source: https://www.reddit.com/r/spelunky/comments/8zlje0/a_sprite_sheet_of_my_custom_if_anyone_wants_to/
+            textureBlok = Globals.content.Load<Texture2D>("Block");
+            textureBG = Globals.content.Load<Texture2D>("bgBlock");
 
             InitializeGameObjects();
         }
@@ -85,13 +96,13 @@ namespace Platformer
         {
             GraphicsDevice.Clear(Color.Crimson);
 
-            _spriteBatch.Begin();
+            Globals.spriteBatch.Begin();
 
-            currentLevel.Draw(_spriteBatch);
-            hero.Draw(_spriteBatch);
+            currentLevel.Draw(Globals.spriteBatch);
+            hero.Draw(Globals.spriteBatch);
             //blokje.Draw(_spriteBatch);
 
-            _spriteBatch.End();
+            Globals.spriteBatch.End();
 
             base.Draw(gameTime);
         }

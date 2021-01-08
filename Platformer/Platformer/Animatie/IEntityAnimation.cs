@@ -9,7 +9,7 @@ namespace Platformer.Animatie
     public interface IEntityAnimation
     {
         Animation Animation { get; set; }
-        void Draw(SpriteBatch spriteBatch);
+        void Draw();
         void Update(GameTime gameTime);
     }
 }
