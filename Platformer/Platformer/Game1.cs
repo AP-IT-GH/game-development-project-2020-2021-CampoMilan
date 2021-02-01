@@ -15,7 +15,10 @@ namespace Platformer
     {
         /* Referenties:
          * Algemene kennis over MonoGame en hoe een game te structureren:
-         * Youtube kanaal -- Batholith Entertainment (https://youtube.com/playlist?list=PLZ6ofHM1rvK8lQSoKX1USZstM-ZXikFHp)
+         * YouTube kanaal -- Batholith Entertainment (https://youtube.com/playlist?list=PLZ6ofHM1rvK8lQSoKX1USZstM-ZXikFHp)
+         * 
+         * Voor gamestates: (heeft ook een YouTube kanaal) 
+         * https://github.com/Oyyou/MonoGame_Tutorials/tree/master/MonoGame_Tutorials/Tutorial013
          * 
          * block sprites: https://opengameart.org/content/inca-tileset
          * hero sprite: https://www.reddit.com/r/spelunky/comments/8zlje0/a_sprite_sheet_of_my_custom_if_anyone_wants_to/
@@ -23,21 +26,17 @@ namespace Platformer
          */
 
 
-        private GraphicsDeviceManager _graphics;
+        private GraphicsDeviceManager graphics;
 
-        private Texture2D textureBlok;
-        private Texture2D textureHero;
-        private Texture2D textureBG;
-        Hero hero;
+        private State currentState;
+        private State nextState;
 
-        CollisionManager collisionManager;
-
-        private GamestateManager gamestateManager;
-        Level currentLevel;
+        
 
         public Game1()
         {
-            _graphics = new GraphicsDeviceManager(this);
+            graphics = new GraphicsDeviceManager(this);
+            Globals.graphicsManager = graphics;
             Globals.content = this.Content;
             Globals.content.RootDirectory = "Content";
             IsMouseVisible = true;
@@ -53,28 +52,17 @@ namespace Platformer
 
         protected override void LoadContent()
         {
-            Globals.spriteBatch = new SpriteBatch(GraphicsDevice);
             
-            textureHero = Globals.content.Load<Texture2D>("spritesheetHero");
-            textureBlok = Globals.content.Load<Texture2D>("Block");
-            textureBG = Globals.content.Load<Texture2D>("bgBlock");
+            currentState = new MainMenu(this, graphics.GraphicsDevice, graphics);
 
-            InitializeGameObjects();
         }
 
-        private void InitializeGameObjects()
+        
+
+        
+        public void ChangeState(State state)
         {
-
-            //gamestateManager = new GamestateManager();
-
-            //gamestateManager.ChangeGamestateTo(gamestateManager.GameplayState);
-
-            currentLevel = new Level1(textureBG, textureBlok);
-            collisionManager = new CollisionManager(currentLevel.blokTileArray);
-            currentLevel.CreateWorld();
-            hero = new Hero(textureHero, new KeyboardReader(), new Vector2(50,10), collisionManager);
-            //blokje = new Blok(textureBlok, new Vector2(1000, 10)); //TEST BLOKJE
-            
+            nextState = state;
         }
 
         protected override void Update(GameTime gameTime)
@@ -83,26 +71,29 @@ namespace Platformer
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            Globals.gameTime = gameTime;
+
+            currentState.Update(gameTime);
+
+            if (nextState != null)
+            {
+                currentState = nextState;
+                nextState = null;
+            }
+
+
             base.Update(gameTime);
-
-            //gamestateManager.CurrentState.Update(gameTime, gamestateManager);
-            
-            hero.Update(gameTime);
-
         }
 
 
         protected override void Draw(GameTime gameTime)
         {
+
+            Globals.spriteBatch = new SpriteBatch(GraphicsDevice);
+
             GraphicsDevice.Clear(Color.Crimson);
 
-            Globals.spriteBatch.Begin();
-
-            currentLevel.Draw();
-            hero.Draw();
-            //blokje.Draw(_spriteBatch); // TEST BLOKJE
-
-            Globals.spriteBatch.End();
+            currentState.Draw(gameTime);
 
             base.Draw(gameTime);
         }

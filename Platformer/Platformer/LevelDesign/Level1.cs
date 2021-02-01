@@ -10,21 +10,19 @@ namespace Platformer.LevelDesign
 {
     public class Level1 : Level
     {
-        public Level1(Texture2D _background, Texture2D _block) : base(_background, _block)
+        public Level1(Texture2D _background, Texture2D _block, Texture2D _finish) : base(_background, _block, _finish)
         {
             CreateTileArray();
-            blokTileArray = new Blok[byteTileArray.GetLength(0), byteTileArray.GetLength(1)];
-            bgTileArray = new BackgroundBlok[byteTileArray.GetLength(0), byteTileArray.GetLength(1)];
-
-            bgTexture = _background;
-            blockTexture = _block;
 
             CreateWorld();
+            StartingPosition = new Vector2(20,50);
+            
         }
 
         /* level elementen:
             0 = achtergrond,
-            1 = blok
+            1 = blok,
+            2 = einde level
         */
 
         public override void CreateTileArray()
@@ -49,7 +47,7 @@ namespace Platformer.LevelDesign
             { 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1 },
             { 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1 },
             { 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1 },
-            { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1 },
+            { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 1, 1 },
         };
         }
     }

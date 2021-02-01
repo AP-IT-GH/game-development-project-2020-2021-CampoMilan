@@ -88,12 +88,12 @@ namespace Platformer
                 currentAnimation = walkLeft;
                 futureColRect.X = (int)CollisionRectangle.X -1;
             }
-            else if (_direction.X == 1)
+            if (_direction.X == 1)
             {
                 currentAnimation = walkRight;
                 futureColRect.X = (int)CollisionRectangle.X + 1;
             }
-            else if (_direction.X == 0)
+            if (_direction.X == 0)
             {
                 currentAnimation = idle;
                 futureColRect.X = (int)Position.X;

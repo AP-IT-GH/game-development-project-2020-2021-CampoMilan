@@ -12,20 +12,26 @@ namespace Platformer.LevelDesign
     {
         protected Texture2D bgTexture;
         protected Texture2D blockTexture;
+        protected Texture2D finishTexture;
 
         public byte[,] byteTileArray;
         public Blok[,] blokTileArray;
         public BackgroundBlok[,] bgTileArray;
+        public FinishLine[,] finishArray;
+        public Vector2 StartingPosition;
 
 
-        public Level(Texture2D _background, Texture2D _block)
+        public Level(Texture2D _background, Texture2D _block, Texture2D _finish)
         {
             CreateTileArray();
             blokTileArray = new Blok[byteTileArray.GetLength(0), byteTileArray.GetLength(1)];
             bgTileArray = new BackgroundBlok[byteTileArray.GetLength(0), byteTileArray.GetLength(1)];
-            
+            finishArray = new FinishLine[byteTileArray.GetLength(0), byteTileArray.GetLength(1)];
+
             bgTexture = _background;
             blockTexture = _block;
+            finishTexture = _finish;
+
             
             CreateWorld();
         }
@@ -41,12 +47,16 @@ namespace Platformer.LevelDesign
                 {
                     switch (byteTileArray[x, y])
                     {
+                        case 2:
+                            finishArray[x, y] = new FinishLine(finishTexture, new Vector2(y * 17, x * 17));
+                            break;
                         case 1:
                             blokTileArray[x, y] = new Blok(blockTexture, new Vector2(y * 17, x * 17));
                             break;
                         case 0:
                             bgTileArray[x, y] = new BackgroundBlok(bgTexture, new Vector2(y * 17, x * 17));
                             break;
+
                     }
                 }
             }
@@ -65,6 +75,10 @@ namespace Platformer.LevelDesign
                     if (bgTileArray[x, y] != null)
                     {
                         bgTileArray[x, y].Draw();
+                    }
+                    if (finishArray[x, y] != null)
+                    {
+                        finishArray[x, y].Draw();
                     }
                 }
             }

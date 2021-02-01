@@ -74,3 +74,6 @@ D:\school\AP\GameDev\game-development-project-2020-2021-CampoMilan\Platformer\Pl
 D:\school\AP\GameDev\game-development-project-2020-2021-CampoMilan\Platformer\Platformer\obj\Debug\netcoreapp3.1\Platformer.genruntimeconfig.cache
 D:\school\AP\GameDev\game-development-project-2020-2021-CampoMilan\Platformer\Platformer\bin\Debug\netcoreapp3.1\Content\bgBlock.xnb
 D:\school\AP\GameDev\game-development-project-2020-2021-CampoMilan\Platformer\Platformer\bin\Debug\netcoreapp3.1\Content\Block.xnb
+D:\school\AP\GameDev\game-development-project-2020-2021-CampoMilan\Platformer\Platformer\bin\Debug\netcoreapp3.1\Content\FinishLine.xnb
+D:\school\AP\GameDev\game-development-project-2020-2021-CampoMilan\Platformer\Platformer\bin\Debug\netcoreapp3.1\Content\font.xnb
+D:\school\AP\GameDev\game-development-project-2020-2021-CampoMilan\Platformer\Platformer\bin\Debug\netcoreapp3.1\Content\background.xnb

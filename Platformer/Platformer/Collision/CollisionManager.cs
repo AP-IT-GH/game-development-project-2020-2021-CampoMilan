@@ -19,18 +19,39 @@ namespace Platformer.Collision
     public class CollisionManager
     {
         List<ICollision> staticObjects;
+        List<ICollision> finishBlocks;
 
-        public CollisionManager(Blok[,] blokTileArray)
+        public CollisionManager(Blok[,] blokTileArray, FinishLine[,] finishLines)
         {
             staticObjects = new List<ICollision>();
+            finishBlocks = new List<ICollision>();
 
             foreach (var item in blokTileArray)
             {
                 staticObjects.Add(item);
             }
+            foreach (var item in finishLines)
+            {
+                finishBlocks.Add(item);
+            }
         }
         public Vector2 CheckCollision(ICollisionMoving movingObject, Vector2 direction)
         {
+            foreach (var finish in finishBlocks)
+            {
+                if (finish != null)
+                {
+                    if (movingObject.FutureCollisionRectangle.Intersects(finish.CollisionRectangle))
+                    {
+                        Globals.currentLevelCounter += 1;
+                        if (Globals.currentLevelCounter > 1)
+                        {
+                            Globals.currentLevelCounter = 1;
+                        }
+                        return Vector2.Zero;
+                    }
+                }
+            }
             foreach (var staticObject in staticObjects)
             {
                 if (staticObject != null)
