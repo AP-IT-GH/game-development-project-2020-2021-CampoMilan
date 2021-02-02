@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile>Reach</Profile>
+  <Platform>Windows</Platform>
+  <Config />
+  <SourceFiles>
+    <File>D:/school/AP/GameDev/game-development-project-2020-2021-CampoMilan/Platformer/Platformer/Content/background.jpg</File>
+    <File>D:/school/AP/GameDev/game-development-project-2020-2021-CampoMilan/Platformer/Platformer/Content/bgBlock.png</File>
+    <File>D:/school/AP/GameDev/game-development-project-2020-2021-CampoMilan/Platformer/Platformer/Content/Block.png</File>
+    <File>D:/school/AP/GameDev/game-development-project-2020-2021-CampoMilan/Platformer/Platformer/Content/buttonFont.spritefont</File>
+    <File>D:/school/AP/GameDev/game-development-project-2020-2021-CampoMilan/Platformer/Platformer/Content/endscreen.jpg</File>
+    <File>D:/school/AP/GameDev/game-development-project-2020-2021-CampoMilan/Platformer/Platformer/Content/FinishLine.png</File>
+    <File>D:/school/AP/GameDev/game-development-project-2020-2021-CampoMilan/Platformer/Platformer/Content/spritesheetHero.png</File>
+    <File>D:/school/AP/GameDev/game-development-project-2020-2021-CampoMilan/Platformer/Platformer/Content/titleFont.spritefont</File>
+  </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>
