@@ -12,9 +12,11 @@ namespace Platformer.GamestateManagement
         GraphicsDeviceManager _manager;
 
         Texture2D btnTexture;
-        SpriteFont font;
+        SpriteFont buttonFont;
+        SpriteFont titleFont;
 
         private List<Component> _components;
+        ScreenText gameTitle;
         Button newGameButton;
         Button quitGameButton;
 
@@ -23,9 +25,12 @@ namespace Platformer.GamestateManagement
             _manager = manager;
 
             btnTexture = Globals.content.Load<Texture2D>("bgBlock");
-            font = Globals.content.Load<SpriteFont>("font");
+            buttonFont = Globals.content.Load<SpriteFont>("buttonFont");
+            titleFont = Globals.content.Load<SpriteFont>("titleFont");
 
-            newGameButton = new Button(btnTexture, font)
+            gameTitle = new ScreenText("Don't fall!", titleFont, new Vector2(300, 50));
+
+            newGameButton = new Button(btnTexture, buttonFont)
             {
                 Position = new Vector2(300, 200),
                 Text = "Play"
@@ -33,7 +38,7 @@ namespace Platformer.GamestateManagement
 
             newGameButton.Click += NewGameButton_Click;
 
-            quitGameButton = new Button(btnTexture, font)
+            quitGameButton = new Button(btnTexture, buttonFont)
             {
                 Position = new Vector2(300,250),
                 Text = "Quit"
@@ -43,6 +48,7 @@ namespace Platformer.GamestateManagement
 
             _components = new List<Component>()
             {
+                gameTitle,
                 newGameButton,
                 quitGameButton
             };
@@ -58,6 +64,7 @@ namespace Platformer.GamestateManagement
 
         private void NewGameButton_Click(object sender, EventArgs e)
         {
+            Globals.currentLevelCounter = 0;
             _game.ChangeState(new Gameplay(_game, _graphics, _manager));
         }
 

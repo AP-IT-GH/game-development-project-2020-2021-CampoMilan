@@ -15,8 +15,6 @@ namespace Platformer.GamestateManagement
         GraphicsDeviceManager graphicsManager;
         Game1 game;
 
-        public bool playerDied;
-
         private Texture2D textureBlok;
         private Texture2D textureHero;
         private Texture2D textureBG;
@@ -73,11 +71,6 @@ namespace Platformer.GamestateManagement
             graphicsManager.ApplyChanges();
         }
 
-        public void ResetLevel()
-        {
-
-        }
-
         public override void Draw(GameTime gameTime)
         {
             Globals.spriteBatch.Begin();
@@ -107,11 +100,18 @@ namespace Platformer.GamestateManagement
             }
             else if (Globals.currentLevelCounter < 1)
             {
-                // Victory
+                _game.ChangeState(new EndScreen(_game, _graphics, _manager));
             }
 
 
             hero.Update(gameTime);
+
+            if (hero.Position.Y > Globals.screenHeight)
+            {
+                Globals.playerDied = true;
+                Globals.currentLevelCounter = -1;
+            }
+
         }
     }
 }

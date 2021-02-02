@@ -77,3 +77,6 @@ D:\school\AP\GameDev\game-development-project-2020-2021-CampoMilan\Platformer\Pl
 D:\school\AP\GameDev\game-development-project-2020-2021-CampoMilan\Platformer\Platformer\bin\Debug\netcoreapp3.1\Content\FinishLine.xnb
 D:\school\AP\GameDev\game-development-project-2020-2021-CampoMilan\Platformer\Platformer\bin\Debug\netcoreapp3.1\Content\font.xnb
 D:\school\AP\GameDev\game-development-project-2020-2021-CampoMilan\Platformer\Platformer\bin\Debug\netcoreapp3.1\Content\background.xnb
+D:\school\AP\GameDev\game-development-project-2020-2021-CampoMilan\Platformer\Platformer\bin\Debug\netcoreapp3.1\Content\buttonFont.xnb
+D:\school\AP\GameDev\game-development-project-2020-2021-CampoMilan\Platformer\Platformer\bin\Debug\netcoreapp3.1\Content\endscreen.xnb
+D:\school\AP\GameDev\game-development-project-2020-2021-CampoMilan\Platformer\Platformer\bin\Debug\netcoreapp3.1\Content\titleFont.xnb

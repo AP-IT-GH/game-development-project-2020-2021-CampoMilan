@@ -25,13 +25,10 @@ namespace Platformer
          * 
          */
 
-
         private GraphicsDeviceManager graphics;
 
         private State currentState;
         private State nextState;
-
-        
 
         public Game1()
         {
@@ -44,20 +41,13 @@ namespace Platformer
 
         protected override void Initialize()
         {
-
-
             base.Initialize();
-
         }
 
         protected override void LoadContent()
         {
-            
             currentState = new MainMenu(this, graphics.GraphicsDevice, graphics);
-
         }
-
-        
 
         
         public void ChangeState(State state)
@@ -80,7 +70,6 @@ namespace Platformer
                 currentState = nextState;
                 nextState = null;
             }
-
 
             base.Update(gameTime);
         }

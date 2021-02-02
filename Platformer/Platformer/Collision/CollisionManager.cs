@@ -8,14 +8,7 @@ using System.Text;
 
 namespace Platformer.Collision
 {
-    public enum CollisionLocation
-    {
-        None,
-        Top,
-        Bottom,
-        Left,
-        Right
-    }
+
     public class CollisionManager
     {
         List<ICollision> staticObjects;
@@ -46,7 +39,7 @@ namespace Platformer.Collision
                         Globals.currentLevelCounter += 1;
                         if (Globals.currentLevelCounter > 1)
                         {
-                            Globals.currentLevelCounter = 1;
+                            Globals.currentLevelCounter = -1;
                         }
                         return Vector2.Zero;
                     }

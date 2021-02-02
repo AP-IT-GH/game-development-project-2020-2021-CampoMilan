@@ -19,5 +19,6 @@ namespace Platformer
         public static GameTime gameTime;
 
         public static int currentLevelCounter;
+        public static bool playerDied;
     }
 }

@@ -64,8 +64,6 @@ namespace Platformer
             currentAnimation.Update(gameTime);
             collisionRect.X = (int)Position.X;
             collisionRect.Y = (int)Position.Y;
-            //Debug.WriteLine("future Collision: " + futureColRect);
-
 
         }
 
