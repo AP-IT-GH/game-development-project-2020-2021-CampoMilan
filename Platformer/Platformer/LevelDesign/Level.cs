@@ -1,10 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Platformer.World;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Platformer.LevelDesign
 {

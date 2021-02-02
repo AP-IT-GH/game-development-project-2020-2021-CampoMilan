@@ -1,12 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Platformer.Collision;
 using Platformer.Input;
 using Platformer.LevelDesign;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Platformer.GamestateManagement
 {

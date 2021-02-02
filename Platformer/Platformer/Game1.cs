@@ -1,13 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Platformer.Collision;
 using Platformer.GamestateManagement;
-using Platformer.Input;
-using Platformer.LevelDesign;
-using Platformer.World;
-using System;
-using System.Diagnostics;
 
 namespace Platformer
 {

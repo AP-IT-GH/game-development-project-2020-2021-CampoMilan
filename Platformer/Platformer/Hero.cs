@@ -2,10 +2,6 @@
 using Microsoft.Xna.Framework.Graphics;
 using Platformer.Interfaces;
 using Platformer.Animatie;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.Xna.Framework.Input;
 using Platformer.Input;
 using Platformer.Commands;
 using Platformer.Animatie.HeroAnimations;
