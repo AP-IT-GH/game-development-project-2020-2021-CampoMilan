@@ -24,7 +24,7 @@ namespace Platformer.GamestateManagement
         }
 
         public abstract void Update(GameTime gameTime);
-        public abstract void Draw(GameTime gameTime);
+        public abstract void Draw();
 
     }
 }

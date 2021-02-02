@@ -15,7 +15,7 @@ namespace Platformer.LevelDesign
             CreateTileArray();
 
             CreateWorld();
-            StartingPosition = new Vector2(20,50);
+            StartingPosition = new Vector2(39,235);
             
         }
 

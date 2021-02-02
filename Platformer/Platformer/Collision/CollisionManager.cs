@@ -73,7 +73,6 @@ namespace Platformer.Collision
                 }
                 
             }
-            Debug.WriteLine("Direction value: " + direction);
             movingObject.IsOnGround = false;
             return direction;
         }

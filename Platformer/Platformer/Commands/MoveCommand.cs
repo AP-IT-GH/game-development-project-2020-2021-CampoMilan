@@ -16,7 +16,7 @@ namespace Platformer.Commands
         public MoveCommand(CollisionManager _collisionManager)
         {
             collisionManager = _collisionManager;
-            this.Speed = new Vector2(1, 1);
+            this.Speed = new Vector2(2, 1);
         }
 
         public void Execute(ITransform transform, Vector2 direction, ICollisionMoving movingObject)

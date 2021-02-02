@@ -16,7 +16,6 @@ namespace Platformer
 {
     class Hero : IGameObject, ITransform, ICollisionMoving
     {
-        private Texture2D heroTexture;
         private Rectangle collisionRect;
         private Rectangle futureColRect;
         private IGameCommand moveCommand;
@@ -39,7 +38,6 @@ namespace Platformer
         public Hero(Texture2D texture, IInputReader inputReader, Vector2 _position, CollisionManager collisionManager)
         {
             // Animatie van hero initialiseren
-            heroTexture = texture;
             walkLeft = new WalkLeftAnimation(texture, this);
             walkRight = new WalkRightAnimation(texture, this);
             idle = new IdleAnimation(texture, this);
@@ -64,6 +62,8 @@ namespace Platformer
             currentAnimation.Update(gameTime);
             collisionRect.X = (int)Position.X;
             collisionRect.Y = (int)Position.Y;
+
+            Debug.WriteLine("Position: X= " + Position.X + " Y= " + Position.Y);
 
         }
 

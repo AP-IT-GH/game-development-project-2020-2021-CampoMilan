@@ -12,14 +12,11 @@ namespace Platformer.GamestateManagement
 {
     public class Gameplay : State
     {
-        GraphicsDeviceManager graphicsManager;
-        Game1 game;
-
         private Texture2D textureBlok;
         private Texture2D textureHero;
         private Texture2D textureBG;
-
         private Texture2D textureFinish;
+        
         Hero hero;
 
         CollisionManager collisionManager;
@@ -30,11 +27,11 @@ namespace Platformer.GamestateManagement
         bool isInitiated = false;
 
 
-        public Gameplay(Game1 _game, GraphicsDevice graphics, GraphicsDeviceManager manager) : base(_game, graphics, manager)
+        public Gameplay(Game1 game, GraphicsDevice graphics, GraphicsDeviceManager manager) : base(game, graphics, manager)
         {
-            game = _game;
+            _game = game;
             _graphics = graphics;
-            graphicsManager = manager;
+            _manager = manager;
 
             Globals.spriteBatch = new SpriteBatch(graphics);
 
@@ -65,13 +62,13 @@ namespace Platformer.GamestateManagement
             Globals.screenWidth = _current.byteTileArray.GetLength(1) * 17;
             Globals.screenHeight = _current.byteTileArray.GetLength(0) * 17;
 
-            graphicsManager.PreferredBackBufferWidth = Globals.screenWidth;
-            graphicsManager.PreferredBackBufferHeight = Globals.screenHeight;
+            _manager.PreferredBackBufferWidth = Globals.screenWidth;
+            _manager.PreferredBackBufferHeight = Globals.screenHeight;
 
-            graphicsManager.ApplyChanges();
+            _manager.ApplyChanges();
         }
 
-        public override void Draw(GameTime gameTime)
+        public override void Draw()
         {
             Globals.spriteBatch.Begin();
 
@@ -84,7 +81,6 @@ namespace Platformer.GamestateManagement
 
         public override void Update(GameTime gameTime)
         {
-
             if (Globals.currentLevelCounter == 0)
             {
                 currentLevel = level1;

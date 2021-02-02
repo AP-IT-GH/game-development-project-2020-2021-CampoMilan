@@ -8,8 +8,6 @@ namespace Platformer.GamestateManagement
 {
     public class EndScreen : State
     {
-        GraphicsDeviceManager _manager;
-
         SpriteFont titleFont;
         SpriteFont buttonFont;
         Texture2D btnTexture;
@@ -90,17 +88,17 @@ namespace Platformer.GamestateManagement
         {
             foreach (var component in components)
             {
-                component.Update(gameTime);
+                component.Update();
             }
         }
-        public override void Draw(GameTime gameTime)
+        public override void Draw()
         {
             Globals.spriteBatch.Begin();
 
             Globals.spriteBatch.Draw(Globals.content.Load<Texture2D>("endscreen"), new Rectangle(0, 0, 800, 500), Color.White);
             foreach (var component in components)
             {
-                component.Draw(gameTime);
+                component.Draw();
             }
 
             Globals.spriteBatch.End();

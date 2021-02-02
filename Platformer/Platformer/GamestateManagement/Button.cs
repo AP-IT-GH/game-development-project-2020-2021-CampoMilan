@@ -51,7 +51,7 @@ namespace Platformer.GamestateManagement
             PenColour = Color.White;
         }
 
-        public override void Draw(GameTime gameTime)
+        public override void Draw()
         {
             var colour = Color.White;
 
@@ -69,7 +69,7 @@ namespace Platformer.GamestateManagement
             }
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update()
         {
             _previousMouse = _currentMouse;
             _currentMouse = Mouse.GetState();

@@ -82,7 +82,7 @@ namespace Platformer
 
             GraphicsDevice.Clear(Color.Crimson);
 
-            currentState.Draw(gameTime);
+            currentState.Draw();
 
             base.Draw(gameTime);
         }

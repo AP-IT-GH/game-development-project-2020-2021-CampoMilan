@@ -9,8 +9,6 @@ namespace Platformer.GamestateManagement
 {
     public class MainMenu : State
     {
-        GraphicsDeviceManager _manager;
-
         Texture2D btnTexture;
         SpriteFont buttonFont;
         SpriteFont titleFont;
@@ -79,17 +77,17 @@ namespace Platformer.GamestateManagement
 
             foreach (var component in _components)
             {
-                component.Update(gameTime);
+                component.Update();
             }
         }
-        public override void Draw(GameTime gameTime)
+        public override void Draw()
         {
             Globals.spriteBatch.Begin();
 
             Globals.spriteBatch.Draw(Globals.content.Load<Texture2D>("background"), new Rectangle(0, 0, 800, 500), Color.White);
             foreach (var component in _components)
             {
-                component.Draw(gameTime);
+                component.Draw();
             }
 
             Globals.spriteBatch.End();

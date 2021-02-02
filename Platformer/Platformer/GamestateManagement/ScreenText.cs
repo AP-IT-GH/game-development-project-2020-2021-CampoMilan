@@ -24,12 +24,12 @@ namespace Platformer.GamestateManagement
         }
 
 
-        public override void Draw(GameTime gameTime)
+        public override void Draw()
         {
             Globals.spriteBatch.DrawString(_font, Text, Position, PenColour);
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update()
         {
             // do nothing
         }
